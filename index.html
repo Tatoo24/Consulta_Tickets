@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -80,25 +81,27 @@
   <div class="card">
     <h1>🎟️ Consulta tus Boletos</h1>
     <p class="sub">Ingresa tu DNI para ver cuántos boletos tienes registrados</p>
-          
-    <input
-      type="text"
-      id="dniInput"
-      placeholder="Ej: 12345678"
-      maxlength="15"
-      inputmode="numeric"
-    />
-    <button id="btnConsultar" onclick="consultar()">Consultar</button>
 
-    <div class="resultado" id="resultado">
-      <div class="numero" id="numeroResultado"></div>
-      <div class="etiqueta" id="etiquetaResultado"></div>
-    </div>
+```
+<input
+  type="text"
+  id="dniInput"
+  placeholder="Ej: 12345678"
+  maxlength="15"
+  inputmode="numeric"
+/>
+<button id="btnConsultar" onclick="consultar()">Consultar</button>
+
+<div class="resultado" id="resultado">
+  <div class="numero" id="numeroResultado"></div>
+  <div class="etiqueta" id="etiquetaResultado"></div>
+</div>
+```
+
   </div>
 
   <script>
-    // 👇 REEMPLAZA ESTA URL CON LA DE TU FLUJO DE POWER AUTOMATE
-    const FLOW_URL = "https://defaultef18f8a5d24a41338b5529106fa5b7.72.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/d500598a21f04a91adf9ff407c79fe21/triggers/manual/paths/invoke?api-version=1";
+    const FLOW_URL = "https://defaultef18f8a5d24a41338b5529106fa5b7.72.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/d500598a21f04a91adf9ff407c79fe21/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J8qStV9Xflurg1-2UMl8x86RwGZ6-d6WBtq2hY6xqLc";
 
     async function consultar() {
       const dni = document.getElementById("dniInput").value.trim();
@@ -112,7 +115,6 @@
         return;
       }
 
-      // Estado de carga
       btn.disabled = true;
       btn.textContent = "Consultando...";
       resultado.style.display = "none";
@@ -151,11 +153,11 @@
       btn.textContent = "Consultar";
     }
 
-    // Permitir Enter para consultar
     document.getElementById("dniInput")
       .addEventListener("keypress", function(e) {
         if (e.key === "Enter") consultar();
       });
   </script>
+
 </body>
 </html>
